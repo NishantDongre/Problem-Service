@@ -1,16 +1,38 @@
+const { StatusCodes } = require("http-status-codes");
+
 function pingProblemController(req, res) {
   res.json({ message: "Problem Controller is up!" });
 }
 
-function addProblem(req, res) {}
+function addProblem(req, res) {
+  return res.status(StatusCodes.NOT_IMPLEMENTED).json({
+    message: "Not implemented",
+  });
+}
 
-function getProblem(req, res) {}
+function getProblem(req, res) {
+  return res.status(StatusCodes.NOT_IMPLEMENTED).json({
+    message: "Not implemented",
+  });
+}
 
-function getProblems(req, res) {}
+function getProblems(req, res) {
+  return res.status(StatusCodes.NOT_IMPLEMENTED).json({
+    message: "Not implemented",
+  });
+}
 
-function deleteProblem(req, res) {}
+function deleteProblem(req, res) {
+  return res.status(StatusCodes.NOT_IMPLEMENTED).json({
+    message: "Not implemented",
+  });
+}
 
-function updateProblem(req, res) {}
+function updateProblem(req, res) {
+  return res.status(StatusCodes.NOT_IMPLEMENTED).json({
+    message: "Not implemented",
+  });
+}
 
 module.exports = {
   addProblem,

@@ -1,8 +1,8 @@
 const express = require("express");
-const ProblemRouter = require("./problem.routes");
+const problemRouter = require("./problem.routes");
 
 const v1Routes = express.Router();
 
-v1Routes.use("/problems", ProblemRouter);
+v1Routes.use("/problems", problemRouter);
 
 module.exports = v1Routes;

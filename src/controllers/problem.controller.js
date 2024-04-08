@@ -13,7 +13,7 @@ function pingProblemController(req, res) {
 
 async function addProblem(req, res, next) {
   try {
-    console.log("incoming req body", req.body);
+    // console.log("incoming req body", req.body);
     const newproblem = await problemService.createProblem(req.body);
     return res.status(StatusCodes.CREATED).json({
       success: true,
@@ -34,9 +34,15 @@ function getProblem(req, res, next) {
   }
 }
 
-function getProblems(req, res, next) {
+async function getProblems(req, res, next) {
   try {
-    throw new NotImplemented("Get Problems");
+    const allProblems = await problemService.getAllProblems();
+    return res.status(StatusCodes.OK).json({
+      success: true,
+      message: "Successfully fetched all the problems",
+      error: {},
+      data: allProblems,
+    });
   } catch (error) {
     next(error);
   }

@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const { PORT } = require("./config/server.config");
 const apiRouter = require("./routes");
 const errorHandler = require("./utils/errorHandler");
+const connectToDB = require("./config/db.config");
 
 const app = express();
 app.use(bodyParser.json());
@@ -18,6 +19,8 @@ app.use("/api", apiRouter);
 // last middleware if any error comes
 app.use(errorHandler);
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`Problem-Server listenning on ${PORT}`);
+  await connectToDB();
+  console.log("Successfully connected to db");
 });

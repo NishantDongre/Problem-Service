@@ -10,6 +10,10 @@ class ProblemRepository {
                 description: problemData.description,
                 testCases: problemData.testCases ? problemData.testCases : [],
                 codeStubs: problemData.codeStubs ? problemData.codeStubs : [],
+                timeLimit: problemData.timeLimit,
+                actualCode: problemData.actualCode,
+                topic: problemData.topic,
+                editorial: problemData.editorial
             });
             logger.info(
                 `[ProblemRepository.createProblem] Problem created successfully: problemID - ${problem._id}`
@@ -28,6 +32,22 @@ class ProblemRepository {
     async getAllProblems() {
         try {
             const allProblems = await Problem.find({});
+            logger.info(
+                `[ProblemRepository.getAllProblem] Retrieved all problems: ${allProblems.length}`
+            );
+            return allProblems;
+        } catch (error) {
+            logger.error(
+                `[ProblemRepository.getAllProblem] Error retrieving all problems: ${error}`
+            );
+            console.log(error);
+            throw error;
+        }
+    }
+
+    async getTopProblems(limit) {
+        try {
+            const allProblems = await Problem.find({}).limit(limit);;
             logger.info(
                 `[ProblemRepository.getAllProblem] Retrieved all problems: ${allProblems.length}`
             );

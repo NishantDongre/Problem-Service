@@ -15,6 +15,10 @@ const problemSchema = new mongoose.Schema({
         required: [true, "Difficulty cannot be empty"],
         default: "easy",
     },
+    timeLimit: { // in Milliseconds
+        type: Number,
+        required: [true, "Code Execution Time Limit is required"]
+    },
     testCases: [
         {
             input: {
@@ -31,7 +35,7 @@ const problemSchema = new mongoose.Schema({
         {
             language: {
                 type: String,
-                enum: ["CPP", "JAVA", "PYTHON"],
+                enum: ["c_cpp", "java", "python"],
                 required: true,
             },
             startSnippet: {
@@ -48,6 +52,16 @@ const problemSchema = new mongoose.Schema({
             },
         },
     ],
+    topic: {
+        type: String,
+        enum: ["Arrays", "Linked Lists", "Stacks", "Queues", "Hash Tables", "Heaps", "Trees", "Binary Trees", "Binary Search Trees", "Graphs", "Tries", "Sorting", "Searching", "DP", "Recursion", "Backtracking", "Greedy", "Bit Manipulation", "Misc"],
+        required: [true, "Problem should be associated with one topic"],
+        default: "Misc",
+    },
+    actualCode: {
+        type: String,
+        required: [true, "Actual Code is required for Expected result for Custom code execution"]
+    },
     editorial: {
         type: String,
     },

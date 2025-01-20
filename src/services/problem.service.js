@@ -21,6 +21,11 @@ class ProblemService {
     return allProblems;
   }
 
+  async getTopProblems(limit) {
+    const topProblems = await this.problemRepository.getTopProblems(+limit);
+    return topProblems;
+  }
+
   async getProblem(problemID) {
     const problem = await this.problemRepository.getProblem(problemID);
     return problem;

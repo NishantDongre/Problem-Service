@@ -86,6 +86,23 @@ async function updateProblem(req, res, next) {
   }
 }
 
+
+async function getTopProblems(req, res, next) {
+  try {
+    const problem = await problemService.getTopProblems(req.query.limit);
+    return res.status(StatusCodes.OK).json({
+      success: true,
+      message: "Successfully fetched a top problems",
+      error: {},
+      data: problem,
+    });
+  } catch (error) {
+    console.log("in getTopProblems")
+    next(error);
+  }
+}
+
+
 module.exports = {
   addProblem,
   getProblem,
@@ -93,4 +110,5 @@ module.exports = {
   deleteProblem,
   updateProblem,
   pingProblemController,
+  getTopProblems
 };
